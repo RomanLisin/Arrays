@@ -1,9 +1,9 @@
 #include<iostream>
 using namespace std;
-#define K k%n //multiplicity
+#define K k%N //multiplicity
 
 void main() {
-	int n;
+	
 	setlocale(LC_ALL, "");
 	const int N = 10;
 	int arr[N];
@@ -11,7 +11,7 @@ void main() {
 	bool directShift = 0;
 
 	cout << "Input number for shift: "; cin >> shift;
-	cout << "If you want to move to the right, enter any number other than 0, enter 0: : "; cin >> directShift;
+	cout << "If you want to move to the right, enter any number other than 0, to the left enter 0: "; cin >> directShift;
 
 	// F(n) = F(n - 1) + F(n - 2)  Fibonacci formula
 		for (int i = 0; i < N; i++) {
