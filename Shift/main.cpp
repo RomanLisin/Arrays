@@ -1,6 +1,9 @@
 #include<iostream>
 using namespace std;
-#define K k%N //multiplicity
+#define K k%N //multiplicity, k cut to the array size
+#define GEOMETRY_SHIFT
+//#define RUNNER_SHIFT
+//#define INDEX_SHIFT
 
 void main() {
 	
@@ -21,15 +24,36 @@ void main() {
 		}
 		cout << endl << endl;
 
-	for (int k = 0; k <= shift; k++) {
-		for (int i = 0; i < N; i++) {
-			if (directShift) cout<<(i >= K ? arr[i - K] : arr[i + N - K]) << "\t";  // right shift
-			else  cout << (i < (N - K) ? arr[i + K] : arr[i - N + K]) << "\t";		// left shift
+#ifdef RUNNER_SHIFT
+
+
+		for (int i = 0, k = 0; k < shift; k++) {
+			for (int j : arr) {
+				cout << arr[i % N] << "\t";     //  i % N  sets the boundaries of the array
+				i++;  // runner
+			}
+			(directShift ? i++ : i--); cout << "\n\n";  // (   ? right shitf : left shift)
+			if (k == 0)cout << "\n\n";   // after the first row
+		}
+
+#endif // RUNNER_SHIFT
+
+#ifdef INDEX_SHIFT
+		for (int k = 0; k <= shift; k++) {
+			for (int i = 0; i < N; i++) {
+				if (directShift) cout << (i >= K ? arr[i - K] : arr[i + N - K]) << "\t";  // right shift
+				else  cout << (i < (N - K) ? arr[i + K] : arr[i - N + K]) << "\t";		// left shift
+
+			}
+			if (k == 0)cout << "\n\n";
 
 		}
-		if (k == 0)cout << endl; cout << endl;
+		cout << "\n\n";
+#endif // INDEX_SHIFT
 
-	}
-	cout << endl << endl;
+
+
+
+
 
 }
